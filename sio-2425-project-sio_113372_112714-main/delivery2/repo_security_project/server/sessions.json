@@ -1,0 +1,16 @@
+{
+    "session_id": "0efec52084f74fef8ca8acc56c424686",
+    "username": "admin",
+    "organization": "UA",
+    "login_time": "2024-12-19T21:04:22.458375",
+    "status": "active",
+    "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4ux05LDP5eI+UuGsBPas\n8e30RwS50IhsyY4eyoZ/Lfq6dothm5V+MF3w8Z16bgXKQKm6P/PPHbC4ajmtvIRa\nP5k8SVCpp3A4I0vWYT2BDErHqvcmpeSL3xZPp7efO38NUn6fDl/Av8nvum9rrfpH\n8M3eZZbOE/o9N9zNmK52fJhA1/w8Pza2Bvwl/Qo7hKZ/0iFH/0Cza3i5apwnHfeT\nhAnVW1HuKCFJ3DE/rGZ7TFfQOl9l+yImqhIgIXkJDU+p+Iu+aIsoyKxyv5X73QPd\nMPb99gsnpnCyzfAwsO+5QQTGHUILtze7dxKvCSBplkkU+22UWaakPy3QkJT+hi80\n5wIDAQAB\n-----END PUBLIC KEY-----",
+    "session_keys": {
+        "confidentiality_key": "44e4ff47e0e6aa49470d1004b03cff04e7833a3017585ae76b5237eb401b4579",
+        "integrity_key": "e77654171d268753f12330448493f088ce0d45efe2d86d592469f04c58c94022"
+    },
+    "active_role": [
+        "manager"
+    ],
+    "past_roles": []
+}

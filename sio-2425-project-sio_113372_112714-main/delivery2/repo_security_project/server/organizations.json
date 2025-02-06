@@ -1,0 +1,116 @@
+{
+    "UA": {
+        "name": "UA",
+        "subjects": [
+            {
+                "username": "admin",
+                "name": "Antonio",
+                "email": "antonio@ua.pt",
+                "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4ux05LDP5eI+UuGsBPas\n8e30RwS50IhsyY4eyoZ/Lfq6dothm5V+MF3w8Z16bgXKQKm6P/PPHbC4ajmtvIRa\nP5k8SVCpp3A4I0vWYT2BDErHqvcmpeSL3xZPp7efO38NUn6fDl/Av8nvum9rrfpH\n8M3eZZbOE/o9N9zNmK52fJhA1/w8Pza2Bvwl/Qo7hKZ/0iFH/0Cza3i5apwnHfeT\nhAnVW1HuKCFJ3DE/rGZ7TFfQOl9l+yImqhIgIXkJDU+p+Iu+aIsoyKxyv5X73QPd\nMPb99gsnpnCyzfAwsO+5QQTGHUILtze7dxKvCSBplkkU+22UWaakPy3QkJT+hi80\n5wIDAQAB\n-----END PUBLIC KEY-----\n",
+                "status": "active",
+                "roles": [
+                    "manager"
+                ],
+                "permissions": [
+                    "ROLE_ACL",
+                    "ROLE_DOWN",
+                    "ROLE_UP",
+                    "ROLE_NEW",
+                    "ROLE_MOD",
+                    "SUBJECT_NEW",
+                    "SUBJECT_UP",
+                    "SUBJECT_DOWN",
+                    "DOC_NEW",
+                    "DOC_READ",
+                    "DOC_DELETE",
+                    "DOC_ACL"
+                ]
+            },
+            {
+                "username": "ronaldo",
+                "name": "Cristiano",
+                "email": "cr7@UA.pt",
+                "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4ux05LDP5eI+UuGsBPas\n8e30RwS50IhsyY4eyoZ/Lfq6dothm5V+MF3w8Z16bgXKQKm6P/PPHbC4ajmtvIRa\nP5k8SVCpp3A4I0vWYT2BDErHqvcmpeSL3xZPp7efO38NUn6fDl/Av8nvum9rrfpH\n8M3eZZbOE/o9N9zNmK52fJhA1/w8Pza2Bvwl/Qo7hKZ/0iFH/0Cza3i5apwnHfeT\nhAnVW1HuKCFJ3DE/rGZ7TFfQOl9l+yImqhIgIXkJDU+p+Iu+aIsoyKxyv5X73QPd\nMPb99gsnpnCyzfAwsO+5QQTGHUILtze7dxKvCSBplkkU+22UWaakPy3QkJT+hi80\n5wIDAQAB\n-----END PUBLIC KEY-----\n",
+                "status": "suspended",
+                "roles": [
+                    "leitor"
+                ],
+                "permissions": [
+                    "ROLE_ACL",
+                    "ROLE_UP",
+                    "DOC_READ"
+                ]
+            },
+            {
+                "username": "joaquim",
+                "name": "Joaquim",
+                "email": "joaquim@UA.pt",
+                "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4ux05LDP5eI+UuGsBPas\n8e30RwS50IhsyY4eyoZ/Lfq6dothm5V+MF3w8Z16bgXKQKm6P/PPHbC4ajmtvIRa\nP5k8SVCpp3A4I0vWYT2BDErHqvcmpeSL3xZPp7efO38NUn6fDl/Av8nvum9rrfpH\n8M3eZZbOE/o9N9zNmK52fJhA1/w8Pza2Bvwl/Qo7hKZ/0iFH/0Cza3i5apwnHfeT\nhAnVW1HuKCFJ3DE/rGZ7TFfQOl9l+yImqhIgIXkJDU+p+Iu+aIsoyKxyv5X73QPd\nMPb99gsnpnCyzfAwsO+5QQTGHUILtze7dxKvCSBplkkU+22UWaakPy3QkJT+hi80\n5wIDAQAB\n-----END PUBLIC KEY-----\n",
+                "status": "active",
+                "roles": [
+                    "funcionario"
+                ],
+                "permissions": []
+            }
+        ],
+        "roles": {
+            "manager": [
+                "ROLE_ACL",
+                "ROLE_DOWN",
+                "ROLE_UP",
+                "ROLE_NEW",
+                "ROLE_MOD",
+                "SUBJECT_NEW",
+                "SUBJECT_UP",
+                "SUBJECT_DOWN",
+                "DOC_NEW",
+                "DOC_READ",
+                "DOC_DELETE",
+                "DOC_ACL"
+            ],
+            "leitor": [
+                "ROLE_ACL",
+                "ROLE_UP",
+                "DOC_READ"
+            ],
+            "funcionario": [
+                "SUBJECT_NEW",
+                "SUBJECT_UP",
+                "SUBJECT_DOWN"
+            ],
+            "visitante": []
+        },
+        "role_status": {
+            "manager": "active",
+            "leitor": "active",
+            "funcionario": "active",
+            "visitante": "active"
+        },
+        "acl": {
+            "manager": [
+                "admin"
+            ],
+            "leitor": [
+                "ronaldo"
+            ],
+            "funcionario": [
+                "joaquim"
+            ],
+            "visitante": []
+        },
+        "docs": [
+            "Hello",
+            "Hello2"
+        ],
+        "Hello": {
+            "manager": [
+                "DOC_NEW",
+                "DOC_READ",
+                "DOC_DELETE"
+            ],
+            "leitor": [
+                "DOC_READ"
+            ]
+        }
+    }
+}

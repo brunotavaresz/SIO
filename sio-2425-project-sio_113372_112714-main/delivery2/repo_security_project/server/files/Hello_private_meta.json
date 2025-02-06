@@ -1,0 +1,17 @@
+{
+    "public_metadata": {
+        "document_handle": "Hello",
+        "name": "HelloWorld.txt",
+        "create_date": "2024-12-19T23:42:58.142911",
+        "creator": "admin",
+        "file_handle": "8b2b9bfc97d033cf47041230f34812ce",
+        "acl": [],
+        "deleter": null
+    },
+    "restricted_metadata": {
+        "alg": "AES-GCM-SHA256",
+        "key": "ROT/R+DmqklHDRAEsDz/BOeDOjAXWFrna1I360AbRXk="
+    },
+    "iv": "0qKyPVZ6kyc87fxzk0Y8rg==",
+    "hmac": "kNCDOB4aGCz+luaexJHXXf1SMeZs8WcEBIS18rRaNMY="
+}

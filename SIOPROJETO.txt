@@ -1,0 +1,83 @@
+- Este projeto é sobre criar um sistema seguro para armazenar e partilhar documentos entre utilizadores dentro de organizações. A ideia é que os documentos sejam guardados de forma segura e que cada pessoa ou aplicação só possa ver e fazer o que lhe for permitido.
+
+- documento tem:
+	- conteudo principal (ficheiro em si)
+	- metadados (informações sobre o documento)
+	
+ o conteudo do documento é encriptado, so quem tem permissão específica consegue ver certos detalhes ou aceder aos documentos.
+ 
+ os documentos sao organizados por "organizações", cada organização tem as suas próprias permissões, que definem quem pode fazer o quê.
+ 
+ 
+- utilizadores são pessoas ou sistemas que interagem com o repositório (onde estão os documentos). Cada utilizador tem um par de chaves (uma privada e uma pública) que são como "senhas" especiais para autenticar (provar que são eles mesmos) e para encriptar/desencriptar documentos
+
+- Uma sessão é uma conexão temporária entre o utilizador e o repositório, as sessões ajudam a manter a segurança ao garantir que só o utilizador com permissão ativa pode aceder ao sistema
+
+- Um papel é um conjunto de permissões (como "administrador" ou "editor"), os utilizadores recebem papéis para determinar o que podem ou não fazer dentro da organização.
+
+REGRAS PRA PROTEGER O SISTEMA
+- O repositório tem uma "chave pública" que ajuda a proteger a comunicação
+- Quando alguém está autenticado, o sistema usa "chaves de sessão" para proteger as informações enquanto estão a ser enviadas de um lado para o outro
+- Para proteger as chaves de cada ficheiro de documento, o sistema usa uma "chave-mestre"
+
+COMO CONSTRUIR O SISTEMA
+- Criação de Chaves: As chaves privadas e públicas dos utilizadores e do repositório devem ser feitas usando criptografia de curvas elípticas (ECC), uma forma segura de criptografia.
+- Comandos de Consola: Cada função do sistema (como criar um utilizador, listar organizações, etc.) deve ser um comando que possa ser executado a partir do terminal (linha de comandos).
+- Configuração do Sistema: Deve ser possível definir a chave pública do repositório e o endereço (IP) do repositório usando variáveis de ambiente (configurações do sistema).
+
+COMANDOS QUE PRECISAM SER CRIADOS
+
+Comandos que Funcionam Localmente (sem ligar ao repositório)
+	- Criar Chaves de Utilizador: Cria uma chave pública e uma chave privada para um utilizador
+	- Desencriptar Ficheiros: Permite desencriptar um ficheiro usando informações sobre como ele foi encriptado
+	
+
+Comandos Anónimos (sem Autenticação)
+	- Criar uma Organização: Cria uma nova organização e define o primeiro utilizador.
+	- Listar Organizações: Mostra todas as organizações no sistema.
+	- Criar Sessão: Permite que um utilizador entre numa sessão segura com a organização.
+	- Obter Ficheiro: Faz o download de um ficheiro através de um identificador.
+	
+Comandos Autenticados (o utilizador precisa provar que é quem diz ser)
+	- Gerir Sessões: Gerir as permissões da sessão atual e listar papéis, utilizadores, e documentos da organização.
+	
+Comandos Autorizados (o utilizador tem permissão para funções avançadas)
+	- Gerir Utilizadores e Papéis: Adicionar ou suspender utilizadores, definir papéis, e controlar acessos aos documentos.
+	
+	
+
+1 DELEVERY:
+
+Preparar o Ambiente e Estrutura do Código
+	- Configurar o ambiente de desenvolvimento com os pacotes necessários (por exemplo, bibliotecas de criptografia como cryptography ou pycryptodome em Python).
+	- Implementar a estrutura de pastas e ficheiros, criando uma organização que suporte o crescimento do projeto.
+	- Configurar o sistema de logging e de ficheiros de estado, usando o exemplo do código base que forneceste.
+
+
+Implementar o Sistema de Gestão de Chaves
+	- Comando rep_subject_credentials <password> <credentials file>
+		- Criar um par de chaves (privada e pública) para um utilizador. A chave privada deve ser gerada a partir de uma password (usando o ECC, por exemplo).
+		- A chave privada deve ser guardada num ficheiro protegido pela password e a chave pública deve ser guardada para uso futuro (como para autenticar o utilizador)
+		- Este comando deve produzir um ficheiro de credenciais que guarda a chave pública e privada (a privada deve estar encriptada com a password).
+		
+
+Desenvolver as Variáveis de Ambiente e Argumentos de Linha de Comando
+	- Configurar o uso das variáveis REP_PUB_KEY (chave pública do repositório) e REP_ADDRESS (endereço do repositório), permitindo defini-las no ambiente ou passar pelo comando com as flags -k e -r.
+	- Criar o mecanismo para carregar e salvar o estado num ficheiro JSON, como visto no código base (state.json). Isso permitirá que as sessões, chaves e outras informações persistam entre execuções.
+	
+	
+Implementar o Servidor Flask Básico
+	- Criar uma API Flask para suportar interações simples, como a listagem de organizações (/organization/list).
+	- Esta API será usada pelos comandos para enviar pedidos ao repositório.
+	- Implementar apenas as rotas mínimas necessárias (por exemplo, rota /organization/list) para suportar o primeiro comando de teste.
+	
+
+Implementar o Comando rep_list_orgs
+	- Este comando deve listar todas as organizações registadas no repositório.
+	- Fazer um pedido GET à rota /organization/list do servidor Flask e imprimir a resposta na consola (pode ser apenas uma lista vazia para já).
+	
+
+Testar e Documentar
+	- Certificar-se de que cada comando funciona como esperado.
+	- Criar documentação simples para cada comando implementado, explicando o que faz e como deve ser usado.
+	- Documentar as variáveis de ambiente e dependências.

@@ -1,0 +1,57 @@
+conceito de confusão significa que existe uma relação complexa entre a saida do algoritmo e as suas entradas
+	tenta ao maximo distinguir a chave do texto cifrado atraves de substituições ao texto original
+
+nao existe cifras continuas assimetricas
+
+cifras simetricas: mesma chave para cifrar e decifrar (a chave tem de ser secreta e compartilhada de forma segura)
+
+modos de cifra: maneiras específicas em que os algoritmos de cifra simétrica podem ser aplicados para criptografar dados
+	ECB (Electronic Codebook): texto simples é dividido em blocos de tamanho fixo. Cada bloco é cifrado de forma independente usando a mesma chave (facil e rapido, mas nao é seguro para grandes quantidades de dados, pode relevrão padrões de cifras), mais para cenarios simples
+	CBC (Cipher Block Chaining): Cada bloco de texto simples é combinado com o bloco cifrado anterior antes de ser cifrado. O primeiro bloco é combinado com um vetor de inicialização (IV) aleatório, que é diferente a cada vez. (mais segurança pois evita padrões, a descriptografia tem de ser feita em forma sequencial e necessidade de vetor iv, NAO PERMITE PARALELIZAÇAO DE DECIFRA)
+	CFB (Cipher Feedback): Ele funciona transformando o texto simples em fluxos de bits e os mistura com o texto cifrado anterior para gerar a saída. O texto simples é cifrado em pedaços menores (geralmente em bits). (permite criptografia de dados em tempo real e util em dados transmitidos de fluxos continuos, mais lento que o CBC e os erros mais complexos)
+	OFB (Output Feedback): transforma o texto simples em um fluxo de bits usando o algoritmo de cifra. Porém, no OFB, o texto cifrado gerado em cada passo é usado como entrada para a próxima iteração do processo de cifragem, em vez de usar o texto cifrado anterior. (se um erro acontecer num bloco nao afetara os outros, necessidade de iv e falta de confiabilidade dos fluxos)
+	CTR (Counter): um contador é combinado com um valor de vetor de inicialização (IV), e o resultado é cifrado. O texto cifrado é gerado combinando o fluxo de bits resultante com o texto simples. (criptogfrafia e descriptografia paralelizadas, erros nao afetam blocos a seguir, tem contador e iv que precisam ser gerenciados para nao se repitirem)
+	GCM (Galois/Counter Mode): extensão do modo CTR, que não apenas cifra os dados, mas também fornece autenticação (confidencialidade e integridade dos dados, requer mais processamento do que modos mais simples)
+	(VER FOTO DO TELEMOVEL)
+
+cifras assimetricas: usa blocos de 128 bits ou 16 bytes (AES)
+	uso de pares de chaves: chave publica e privada
+	chave publica: usada para cifrar a mensagem
+	chave privada: usada para descriptografar a mensagem
+	mais lenta que a simétrica
+	
+	remetente usa a chave publica do destinatario para cifrar a mensagem, (a chave publica do destinatario é acessivel a qualquer pessoa) e entao ele usa essa chave para garantir que so o destinatario possa ler a mensagem. O destinatario recebe a mensagem e usa a sua chave privada para descriptografá-la, so ele pode fazer isso porque tem a chave privada correspondente à chave publica usada para cifrar a mensagem.
+	
+	
+cifra hibrida: combina vantagens da cripotgrafia simetrica e assimetrica (equilibra segurança e eficiência) (AES)
+	começasse por criar uma chave simetrica aleatoria e unica para cifrar a mensagem real
+	esta chave simetrica precisa de ser partilhada com o destinatario para que ele possa descriptografar os dados, no entanto em vez de enviar a chave simetrica em texto claro, ela é cifrada com a chave publica do destinatario (assimetrica)
+	qualquer pessoa poderá aceder à chave publica e cifrar a chave simetrica mas so o destinatario irá conseguir descriptografá-la. Resumindo o remetente entrega o texto cifrado (pela chave simetrica) e envia tambem a chave simetrica (cifrada com a chave publica do destinatario)
+	por fim o destinario descripotgrafa a chave simetrica com a sua chave privada e descriptografa o texto cifrado com essa mesma chave simetrica
+	
+branqueamento de cifras: aplicam as chaves ao texto e/ou criptograma (texto cifrado acho) com XOR ( 1 1 x , 1 0 y, 0 1 y, 0 0 x)
+
+MAC (Message Authentication Code): verifica a integridade e a autenticidade de uma mensagem, é um codigo curto que é gerado a partir de mensagem e de uma chave secreta (so remetente e destinatario sabem). O MAC é gerado com cifras simetricas por blocos.
+	a mensagem "hello" é combinada com uma chave secreta e um algoritmo de cifragem, o resultado é um cdoigo MAC, este codigo é enviado junto da mesnagem, o destinatario recebe-os e faz o calculo do MAC da mesma forma, se for igual ao do remetente ele sabe que a mensagem é autentica.
+
+
+mecanismo PBKFD2 deve ser privado, a senha mais importante o Pseudo Randmon Generator (gerar os valores aleatorios da chave) pois se alguem percebe como funciona pode reverter e compromete o segurança da chave. este mecanismo fortalece as senhas e melhora a segurança especialmente em ataques de força bruta.
+
+assinatura digital de uma mensagem permite que terceiros verifiquem a identidade de quem a envia numa rede. 
+	objetivo é o não-repudio que é impedir que a entididade negue que a autoria de um documento texto. 
+	para verificar a assinatura digital de um documento é preciso a chave publica do assinante. 
+	a assinatura tambem garante que depois de ser feita consiga se ver se houve alteração do documento. 
+	uma assinatura de uma mensagem usando RSA (autenticação) nao garante a sua confidencialidade (mensagem legivel para quem tem acesso a ela, para confidencialidade a mensagem teria que ser cifrada).
+	
+Certificado de um usuário → assinado por uma CA intermediária → que é assinada por uma CA raiz. A CA raiz é a entidade em que o sistema confia automaticamente e que valida todos os certificados abaixo dela.
+	A confiança na CA raiz permite uma verificação incompleta da cadeia de certificação, pois a confiança nela autoriza o sistema a considerar válidos os certificados subsequentes sem verificações adicionais.
+	Certificado raiz é autoassinado ou seja nao é confiavel porque ninguem certifica o seu certificado (so ele proprio).
+	Certificado depois de passar a validade, nao pode ser estendido, tem de se criar outro senao o certificado é invalido e nao se pode usar. Algo bastante importate é que a validade serve para limitar no tempo, o uso da correspondente chava privada (para nenhum hacker conseguir usar a tua chave privada depois de "expirar"), logo a chave privada nao pode ser usada fora desse periodo
+	Um utente pode verificar uma cadeia de certificação, sem ter que verificar todos os certificados da cadeia, quando existe uma Entidade Certificadora intermédia confiavel no caminho de certificação.
+	No CRL (certificate revocation list) quando uma lista base é emitida, esta importa obrigatoriamente a lista delta imediatamente anterior a ela.
+	Base CRL: É a lista completa de certificados revogados até o momento da sua emissão.
+	Delta CRL: É uma lista incremental que contém apenas os certificados que foram revogados desde a última Base CRL.
+	A CRL é uma lista de certificados revogados. Ou seja, ela contém os certificados que foram invalidados antes de sua data de expiração.
+	No funcionamento de uma PKI (Public Key Infrastruture) como se cria um certificado assinado por uma Entidade Certificadora (CA), evia-se um Certificado Signing Request (CSR) para a CA, que devolve um certificado assinado.
+	
+

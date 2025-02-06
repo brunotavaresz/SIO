@@ -1,0 +1,28 @@
+rep_subject_credentials <password> <credentials file>		ja cria chaves
+rep_decrypt_file <encrypted file> <encryption metadata>
+
+rep_create_org <organization> <username> <name> <email> <public key file>	cria organizações
+rep_list_orgs		lista organizacões
+rep_create_session <organization> <username> <password> <credentials file> <session file>	cria sessão
+rep_get_file <file handle> [file]
+
+
+rep_list_subjects <session file> [username]  This command lists the subjects of the organization with which I have currently a session. The listing should show the status of all the subjects (active or suspended). This command accepts an extra command to show only one subject.		lista subjects
+rep_list_docs <session file> [-s username] [-d nt/ot/et date]
+
+
+rep_add_subject <session file> <username> <name> <email> <credentials file> This command adds a new subject to the organization with which I have currently a session. By default the subject is created in the active status. This commands requires a SUBJECT_NEW permission. 	adiciona subject
+
+
+rep_suspend_subject <session file> <username>		suspende
+rep_activate_subject <session file> <username>		ativa
+
+
+rep_add_doc <session file> <document name> <file> This command adds a document with a given name to the organization with which I have currently a session. The document’s contents is provided as parameter with a file name. This commands requires a DOC_NEW permission.
+
+
+rep_get_doc_metadata <session file> <document name> This command fetches the metadata of a document with a given name to the organization with which I have currently a session. The output of this command is useful for getting the clear text contents of a document’s file. This commands requires a DOC_READ permission.
+
+rep_get_doc_file <session file> <document name> [file]  This command is a combination of rep_get_doc_metadata with rep_get_file and rep_decrypt_file. The file contents are written to stdout or to the file referred in the optional last argument. This commands requires a DOC_READ permission.
+
+rep_delete_doc <session file> <document name>  This command clears file_handle in the metadata of a document with a given name on the organization with which I have currently a session. The output of this command is the file_handle that ceased to exist in the document’s metadata. This commands requires a DOC_DELETE permission.

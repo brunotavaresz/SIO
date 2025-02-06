@@ -1,0 +1,4 @@
+Key: 5hD¹)³²”ò’½"HÛUø¿–§ãò!.79#o§2`O
+IV / Nonce: @[Ş! _KÂ 6?DmO“
+Ciphertext: ğíAûö7ìÜ¤ßp4ˆáàZhÖ}œ/…€:Ú
+Decrypted Message: Ã© so para testar se o programa
